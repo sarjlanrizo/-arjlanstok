@@ -110,7 +110,7 @@ function satisiKaydet() {
   }
 
   urunler[seciliIndex].stok -= adet;
-
+kaydet();
   urunler[seciliIndex].hareketler.unshift(
     "-" + adet + " " + musteri
   );
