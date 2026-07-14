@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Şarjlan Stok</title>
 
+<link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
 
-<link rel="manifest" href="manifest.json">
-
 <meta name="theme-color" content="#ff7300">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 </head>
 
@@ -21,81 +18,182 @@
 
 <header>
 
-<h1>⚡ Şarjlan Stok</h1>
+<div class="logo">
+
+⚡ ŞARJLAN
+
+</div>
+
+<div class="headerButtons">
+
+<button onclick="backupData()">
+
+💾
+
+</button>
+
+<button onclick="restoreData()">
+
+📂
+
+</button>
+
+</div>
 
 </header>
 
-<div class="dashboard">
+<section class="dashboard">
 
-<div class="card">
+<div class="dashCard">
 
-<h2>Toplam Ürün</h2>
+<h4>Toplam Ürün</h4>
 
-<p id="toplamUrun">9</p>
+<h2 id="toplamUrun">
 
-</div>
+0
 
-<div class="card">
-
-<h2>Toplam Stok</h2>
-
-<p id="toplamStok">900</p>
+</h2>
 
 </div>
 
-<div class="card">
+<div class="dashCard">
 
-<h2>Düşük Stok</h2>
+<h4>Toplam Stok</h4>
 
-<p id="dusukStok">0</p>
+<h2 id="toplamStok">
 
-</div>
+0
 
-</div>
-
-<div class="search">
-
-<input type="text" id="arama" placeholder="Ürün Ara...">
+</h2>
 
 </div>
 
-<div id="urunListesi"></div>
+<div class="dashCard">
 
-<div class="menu">
+<h4>Bugünkü Satış</h4>
 
-<button onclick="anaSayfa()">🏠</button>
+<h2 id="bugun">
 
-<button onclick="urunler()">📦</button>
+0
 
-<button onclick="musteriler()">👤</button>
-
-<button onclick="siparisler()">🚚</button>
-
-<button onclick="ayarlar()">⚙️</button>
+</h2>
 
 </div>
 
-<!-- Ürün Detay -->
+<div class="dashCard">
 
-<div id="urunModal" class="modal">
+<h4>Düşük Stok</h4>
 
-<div class="modal-content">
+<h2 id="dusuk">
 
-<span class="close" onclick="kapatModal()">&times;</span>
+0
 
-<h2 id="urunAdi"></h2>
+</h2>
 
-<h3>
+</div>
 
-Stok :
+</section>
 
-<span id="urunStok"></span>
+<section class="searchArea">
 
-</h3>
+<input
+id="arama"
+placeholder="Ürün ara..."
+type="text">
 
-<div class="buttons">
+</section>
 
-<button class="yesil" onclick="stokEkle()">
+<section id="urunListesi">
+
+</section>
+
+<div class="floating">
+
+<button onclick="yeniUrun()">
+
++
+
+</button>
+
+</div>
+
+<nav>
+
+<button onclick="menuSec(0)">
+
+🏠
+
+<div>Anasayfa</div>
+
+</button>
+
+<button onclick="menuSec(1)">
+
+📦
+
+<div>Ürünler</div>
+
+</button>
+
+<button onclick="menuSec(2)">
+
+🛒
+
+<div>Satış</div>
+
+</button>
+
+<button onclick="menuSec(3)">
+
+👤
+
+<div>Müşteriler</div>
+
+</button>
+
+<button onclick="menuSec(4)">
+
+⚙️
+
+<div>Ayarlar</div>
+
+</button>
+
+</nav>
+
+<div class="modal" id="urunModal">
+
+<div class="modalContent">
+
+<span
+class="close"
+onclick="modalKapat()">
+
+×
+
+</span>
+
+<h2 id="urunAdi">
+
+</h2>
+
+<p>
+
+Mevcut Stok
+
+</p>
+
+<h1 id="urunStok">
+
+0
+
+</h1>
+
+<div class="modalButtons">
+
+<button
+class="green"
+onclick="stokEkle()">
 
 ➕
 
@@ -103,9 +201,11 @@ Stoğa Ekle
 
 </button>
 
-<button class="kirmizi" onclick="satisYap()">
+<button
+class="red"
+onclick="satisModalAc()">
 
-➖
+🛒
 
 Satış Yap
 
@@ -113,31 +213,61 @@ Satış Yap
 
 </div>
 
-<h3>Hareket Geçmişi</h3>
+<h3>
 
-<ul id="hareketler"></ul>
+Hareketler
+
+</h3>
+
+<ul id="hareketListesi">
+
+</ul>
 
 </div>
 
 </div>
 
-<!-- Satış -->
+<div
+class="modal"
+id="satisModal">
 
-<div id="satisModal" class="modal">
+<div class="modalContent">
 
-<div class="modal-content">
+<span
+class="close"
+onclick="satisModalKapat()">
 
-<h2>Satış Yap</h2>
+×
 
-<input id="musteriAdi" placeholder="Müşteri Adı">
+</span>
 
-<input id="telefon" placeholder="Telefon">
+<h2>
 
-<input id="adres" placeholder="Adres">
+Satış
 
-<input id="adet" type="number" value="1">
+</h2>
 
-<input id="fiyat" type="number" placeholder="Satış Fiyatı">
+<input
+id="musteri"
+placeholder="Müşteri Adı">
+
+<input
+id="telefon"
+placeholder="Telefon">
+
+<input
+id="adres"
+placeholder="Adres">
+
+<input
+id="adet"
+type="number"
+value="1">
+
+<input
+id="fiyat"
+type="number"
+placeholder="Satış Fiyatı">
 
 <select id="odeme">
 
@@ -149,13 +279,11 @@ Satış Yap
 
 </select>
 
-<input id="kargo" placeholder="Kargo Firması">
+<button
+class="saveButton"
+onclick="satisKaydet()">
 
-<input id="takip" placeholder="Takip Numarası">
-
-<button onclick="satisiKaydet()">
-
-Satışı Kaydet
+SATIŞI TAMAMLA
 
 </button>
 
@@ -163,8 +291,12 @@ Satışı Kaydet
 
 </div>
 
+<input
+type="file"
+id="restoreFile"
+hidden>
+
 <script src="app.js"></script>
 
 </body>
-
 </html>
