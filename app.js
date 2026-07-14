@@ -76,7 +76,8 @@ function stokEkle() {
   adet = Number(adet);
 
   urunler[seciliIndex].stok += adet;
-
+  kaydet();
+urunler[seciliIndex].hareketler.unshift(
   urunler[seciliIndex].hareketler.unshift(
     "+" + adet + " stok eklendi"
   );
