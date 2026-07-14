@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Şarjlan Stok</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#ff7300">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>⚡ Şarjlan Stok</h1>
+
+</header>
+
+<div class="dashboard">
+
+<div class="card">
+
+<h2>Toplam Ürün</h2>
+
+<p id="toplamUrun">9</p>
+
+</div>
+
+<div class="card">
+
+<h2>Toplam Stok</h2>
+
+<p id="toplamStok">900</p>
+
+</div>
+
+<div class="card">
+
+<h2>Düşük Stok</h2>
+
+<p id="dusukStok">0</p>
+
+</div>
+
+</div>
+
+<div class="search">
+
+<input type="text" id="arama" placeholder="Ürün Ara...">
+
+</div>
+
+<div id="urunListesi"></div>
+
+<div class="menu">
+
+<button onclick="anaSayfa()">🏠</button>
+
+<button onclick="urunler()">📦</button>
+
+<button onclick="musteriler()">👤</button>
+
+<button onclick="siparisler()">🚚</button>
+
+<button onclick="ayarlar()">⚙️</button>
+
+</div>
+
+<!-- Ürün Detay -->
+
+<div id="urunModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="kapatModal()">&times;</span>
+
+<h2 id="urunAdi"></h2>
+
+<h3>
+
+Stok :
+
+<span id="urunStok"></span>
+
+</h3>
+
+<div class="buttons">
+
+<button class="yesil" onclick="stokEkle()">
+
+➕
+
+Stoğa Ekle
+
+</button>
+
+<button class="kirmizi" onclick="satisYap()">
+
+➖
+
+Satış Yap
+
+</button>
+
+</div>
+
+<h3>Hareket Geçmişi</h3>
+
+<ul id="hareketler"></ul>
+
+</div>
+
+</div>
+
+<!-- Satış -->
+
+<div id="satisModal" class="modal">
+
+<div class="modal-content">
+
+<h2>Satış Yap</h2>
+
+<input id="musteriAdi" placeholder="Müşteri Adı">
+
+<input id="telefon" placeholder="Telefon">
+
+<input id="adres" placeholder="Adres">
+
+<input id="adet" type="number" value="1">
+
+<input id="fiyat" type="number" placeholder="Satış Fiyatı">
+
+<select id="odeme">
+
+<option>Nakit</option>
+
+<option>Kart</option>
+
+<option>Havale</option>
+
+</select>
+
+<input id="kargo" placeholder="Kargo Firması">
+
+<input id="takip" placeholder="Takip Numarası">
+
+<button onclick="satisiKaydet()">
+
+Satışı Kaydet
+
+</button>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
