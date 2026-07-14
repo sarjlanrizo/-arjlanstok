@@ -1,4 +1,4 @@
-const urunler = [
+const let urunler = JSON.parse(localStorage.getItem("urunler")) || [
   { ad: "Type C USB Kablo", stok: 100, hareketler: [] },
   { ad: "Lightning USB Kablo", stok: 100, hareketler: [] },
   { ad: "Micro USB Kablo", stok: 100, hareketler: [] },
