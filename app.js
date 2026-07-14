@@ -150,5 +150,12 @@ k.style.display="none";
 });
 
 });
+function kaydet(){
 
+localStorage.setItem(
+"urunler",
+JSON.stringify(urunler)
+);
+
+}
 listele();
